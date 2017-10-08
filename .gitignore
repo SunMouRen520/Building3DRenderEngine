@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+.ppm
 
 # Ignore `bin` dir
 bin/

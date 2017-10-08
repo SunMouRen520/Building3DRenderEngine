@@ -1,5 +1,15 @@
-all:
-	g++ main.cpp -o main.app
+
+APP=main.app
+
+CXX=g++
+
+SRC+=main.cpp
+SRC+=PPMCreater.cpp
+
+OBJS=$(SRC:.cpp=.o)
+
+$(APP): $(OBJS)
+	$(CXX) $(OBJS) -o $@
 
 clean:
-	@rm -f main.app *.o
+	@rm -f $(APP) *.o
