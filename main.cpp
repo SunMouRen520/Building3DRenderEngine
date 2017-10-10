@@ -9,40 +9,23 @@ using namespace std;
 
 main()
 {
-    cout << "Hello 3D World!"<<endl;
-
-    PPMCreater * pImage = new PPMCreater(3,2);
+    PPMCreater * pImage = new PPMCreater(1024,768);
 
     Colour inputcolor;
     inputcolor.r = 255;
     inputcolor.g = 0;
     inputcolor.b = 0;
-    pImage->setPixel(inputcolor, 0, 0);
-
-    inputcolor.r = 0;
-    inputcolor.g = 255;
-    inputcolor.b = 0;
-    pImage->setPixel(inputcolor, 1, 0);
-
-    inputcolor.r = 0;
-    inputcolor.g = 0;
-    inputcolor.b = 255;
-    pImage->setPixel(inputcolor, 2, 0);
-
-    inputcolor.r = 255;
-    inputcolor.g = 255;
-    inputcolor.b = 0;
-    pImage->setPixel(inputcolor, 0, 1);
-
-    inputcolor.r = 255;
-    inputcolor.g = 255;
-    inputcolor.b = 255;
-    pImage->setPixel(inputcolor, 1, 1);
-
-    inputcolor.r = 0;
-    inputcolor.g = 0;
-    inputcolor.b = 0;
-    pImage->setPixel(inputcolor, 2, 1);
+    int X = 1024/2;
+    int Y = 768/2;
+    pImage->setPixel(inputcolor, X-1, Y-1);
+    pImage->setPixel(inputcolor, X-1,   Y);
+    pImage->setPixel(inputcolor, X-1, Y+1);
+    pImage->setPixel(inputcolor,   X, Y-1);
+    pImage->setPixel(inputcolor,   X,   Y);
+    pImage->setPixel(inputcolor,   X, Y+1);
+    pImage->setPixel(inputcolor, X+1, Y-1);
+    pImage->setPixel(inputcolor, X+1,   Y);
+    pImage->setPixel(inputcolor, X+1, Y+1);
 
     pImage->WriteImage("output.ppm");
 

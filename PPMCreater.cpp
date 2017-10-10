@@ -27,7 +27,7 @@ void PPMCreater::setPixel(Colour inputcolor, int x, int y)
 
 void PPMCreater::WriteImage(const char * filename)
 {
-  ofstream ofile;
+
 
 	//Error checking
 	if (m_width <= 0 || m_height <= 0)
@@ -36,7 +36,7 @@ void PPMCreater::WriteImage(const char * filename)
 		return;
 	}
   int imgSize = 3*m_width*m_height;
-	
+
 	char * img = new char[imgSize];
 
 	int x, y;
@@ -53,6 +53,7 @@ void PPMCreater::WriteImage(const char * filename)
 		}
 	}
 
+  ofstream ofile;
 	ofile.open(filename, ios::out | ios::binary);
 
   ofile <<"P6"<<endl;
