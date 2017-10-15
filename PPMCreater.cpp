@@ -43,7 +43,7 @@ void PPMCreater::WriteImage(const char * filename)
 
 	for(int i=0; i<m_width; i++)
 	{
-	    for(int j=0; j<m_height; j++)
+	  for(int j=0; j<m_height; j++)
 		{
 		    x=i;
         y=j;

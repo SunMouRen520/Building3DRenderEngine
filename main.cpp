@@ -24,6 +24,15 @@ main()
 
     DrawLine(pImage, startPt, endPt, inputcolor);
 
+    Point2Di Pt1(0,0);
+    Point2Di Pt2(1023,0);
+    Point2Di Pt3(1023,767);
+    Point2Di Pt4(0,767);
+    DrawLine(pImage, Pt1, Pt2, inputcolor);
+    DrawLine(pImage, Pt2, Pt3, inputcolor);
+    DrawLine(pImage, Pt3, Pt4, inputcolor);
+    DrawLine(pImage, Pt4, Pt1, inputcolor);
+
     pImage->WriteImage("output.ppm");
 
     delete pImage;
@@ -32,11 +41,40 @@ main()
 
 int DrawLine(PPMCreater * pImage, Point2Di startPt, Point2Di endPt, Colour lineColor)
 {
-  float Slope = (float)(endPt.y - startPt.y)/(float)(endPt.x - startPt.x);
-  for(int X=startPt.x;X<endPt.x;X++)
+  int leftX = startPt.x;
+  int rightX = endPt.x;
+  int leftY = startPt.y;
+  int rightY = endPt.y;
+
+  if (leftX > rightX)
   {
-    int Y = startPt.y + (int)(Slope * (float)X);
-    pImage->setPixel(lineColor, X, Y);
+    leftX = endPt.x;
+    rightX = startPt.x;
+    leftY = endPt.y;
+    rightY = startPt.y;
+  }
+
+  if ((rightX - leftX) == 0)
+  {
+    if (leftY > rightY)
+    {
+      leftY = endPt.y;
+      rightY = startPt.y;
+    }
+    //Vertical line
+    for(int Y=leftY;Y<rightY;Y++)
+    {
+      pImage->setPixel(lineColor, leftX, Y);
+    }
+  }
+  else
+  {
+    float Slope = (float)(rightY - leftY)/(float)(rightX - leftX);
+    for(int X=leftX;X<rightX;X++)
+    {
+      int Y = leftY + (int)(Slope * (float)(X - leftX));
+      pImage->setPixel(lineColor, X, Y);
+    }
   }
   return 0;
 }
